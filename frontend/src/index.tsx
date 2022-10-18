@@ -6,6 +6,10 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import App from "./App";
 
+import axios from "axios";
+import { setupInterceptorsTo } from "./interceptors/Interceptor";
+setupInterceptorsTo(axios);
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
