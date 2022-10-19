@@ -1,5 +1,5 @@
 {
-  "name": "poke-api-challenger-backend",
+  "name": "poke-api-challenge-backend",
   "version": "0.0.1",
   "description": "",
   "author": "Roberto Ruiz",
@@ -34,6 +34,8 @@
     "class-validator": "^0.13.2",
     "joi": "^17.6.3",
     "mongoose": "^6.6.5",
+    "mongoose-autopopulate": "^0.16.1",
+    "nest-commander": "^3.1.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",

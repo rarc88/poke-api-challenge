@@ -1,4 +1,4 @@
-# Poke API Challenger - Backend
+# Poke API Challenge - Backend
 
 ## Creación del proyecto de NestJS
 
