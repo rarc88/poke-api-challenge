@@ -2,7 +2,7 @@ import { registerAs } from '@nestjs/config';
 
 export default registerAs('apiConfig', () => {
   return {
-    port: parseInt(process.env.PORT, 10) || 3000,
+    port: parseInt(process.env.PORT, 10) || 4000,
     database: {
       connection: process.env.DATABASE_CONNECTION,
       host: process.env.DATABASE_HOST,
@@ -17,6 +17,9 @@ export default registerAs('apiConfig', () => {
     auth: {
       secret: process.env.AUTH_SECRET,
       expire: process.env.AUTH_EXPIRE,
+    },
+    pokeApi: {
+      url: process.env.POKE_API,
     },
   };
 });

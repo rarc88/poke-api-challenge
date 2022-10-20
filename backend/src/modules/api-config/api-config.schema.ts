@@ -13,4 +13,6 @@ export default {
 
   AUTH_SECRET: Joi.string().required(),
   AUTH_EXPIRE: Joi.string().required(),
+
+  POKE_API: Joi.string().required(),
 };

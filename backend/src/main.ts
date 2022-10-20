@@ -6,7 +6,6 @@ import { AppModule } from './app.module';
 import { APIConfigService } from './modules/api-config/api-config.service';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { ExceptionInterceptor } from './interceptors/exception.interceptor';
-import { CommandFactory } from 'nest-commander';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -42,7 +41,5 @@ async function bootstrap() {
   app.enableCors();
 
   await app.listen(apiConfigService.env.port);
-
-  await CommandFactory.run(AppModule);
 }
 bootstrap();

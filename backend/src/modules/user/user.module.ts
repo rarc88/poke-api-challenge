@@ -4,7 +4,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { User, UserSchema } from './entities/user.entity';
-import { UsersRunner } from './commands/user-runner.command';
 
 @Global()
 @Module({
@@ -22,7 +21,7 @@ import { UsersRunner } from './commands/user-runner.command';
     ]),
   ],
   controllers: [UserController],
-  providers: [UserService, UsersRunner],
+  providers: [UserService],
   exports: [UserService],
 })
 export class UserModule {}
