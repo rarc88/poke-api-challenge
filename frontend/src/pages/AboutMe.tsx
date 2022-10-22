@@ -88,14 +88,6 @@ export const AboutMe = () => {
                   <FaInstagramSquare size={size} color="#C13584" />
                 </a>
                 <a
-                  href="https://www.instagram.com/rarc2288"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="card-link"
-                >
-                  <FaInstagramSquare size={size} color="#C13584" />
-                </a>
-                <a
                   href="https://github.com/rarc88"
                   rel="noreferrer"
                   target="_blank"
