@@ -10,10 +10,10 @@ Los directorios contienen su propio README.md con las instrucciones de como inst
 
 ## Acceso al deploy
 
-Adicionalmente, el proyecto fue subido a un EC2 de AWS y puede ser accedido a través de los siguientes enlaces:
+Adicionalmente, el proyecto fue subido a una instancia Lightsail de AWS y puede ser accedido a través de los siguientes enlaces:
 
- - **Frontend**:  ec2-18-221-239-57.us-east-2.compute.amazonaws.com
- - **Backend**:  ec2-18-221-239-57.us-east-2.compute.amazonaws.com:4000/api/v1
+ - **Frontend**:  http://54.89.188.33
+ - **Backend**:  http://54.89.188.33:4000/api/v1
 
 ## Levantar entorno local con Docker
 
