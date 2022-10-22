@@ -1,5 +1,12 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 interface Props {
   children: JSX.Element;
@@ -8,6 +15,7 @@ interface Props {
 export const Layout = ({ children }: Props) => {
   const [height, setHeight] = useState(0);
   const nav = useRef<HTMLDivElement>(null);
+  const { setAccessToken } = useContext(AuthContext);
 
   const handlerResize = () => {
     if (nav.current) setHeight(nav.current.clientHeight);
@@ -19,22 +27,27 @@ export const Layout = ({ children }: Props) => {
     return () => window.removeEventListener("resize", handlerResize);
   });
 
+  const handlerLogout = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    setAccessToken(null);
+  };
+
   return (
     <Fragment>
       <nav
-        className="navbar navbar-expand-lg navbar-light bg-light py-3 px-4 shadow-lg position-fixed w-100"
+        className="navbar navbar-expand-lg navbar-light bg-light py-0 px-4 shadow-lg position-fixed w-100"
         style={{ zIndex: 3 }}
         ref={nav}
       >
-        <Link to={"/"} className="navbar-brand">
+        <Link to={"/pokemon"} className="navbar-brand">
           <img
-            src="/logo192.png"
-            width="30"
-            height="30"
+            src="/rarc.png"
+            height="60"
             className="d-inline-block align-top"
             alt=""
           />
-          PokeAPI
         </Link>
 
         <div
@@ -48,9 +61,13 @@ export const Layout = ({ children }: Props) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/contact"} className="nav-link">
-                Contact
-              </Link>
+              <a
+                href="/"
+                className="nav-link"
+                onClick={(e) => handlerLogout(e)}
+              >
+                Logout
+              </a>
             </li>
           </ul>
         </div>

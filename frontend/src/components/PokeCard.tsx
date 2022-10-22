@@ -12,13 +12,15 @@ export const PokeCard = ({ pokemon }: Props) => {
       <div className="border rounded shadow-lg pb-4" style={{ maxWidth: 300 }}>
         <img
           className="img-fluid"
-          src={pokemon.officialArtwork}
+          src={pokemon.image}
           alt={pokemon.name}
           style={{ maxWidth: "100%", height: "auto" }}
         />
-        <h3>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h3>
+        <h3>{`${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(
+          1
+        )}`}</h3>
         <p>{pokemon.description}</p>
-        <Link to={`/pokemon/${pokemon.id}`} className="btn btn-primary">
+        <Link to={`/pokemon/${pokemon.name}`} className="btn btn-primary">
           More details
         </Link>
       </div>

@@ -1,17 +1,15 @@
 import React from "react";
 
 export interface Pokemon {
+  externalId?: number;
   name: string;
-  url: string;
-  id?: number;
+  description: string;
+  image?: string;
+  evolvesTo?: string;
   height?: number;
   weight?: number;
-  officialArtwork?: string;
-  types?: string;
-  description?: string;
   baseExperience?: number;
+  types?: string;
   abilities?: string;
   moves?: string;
-  specieUrl: string;
-  evolvesTo: string;
 }

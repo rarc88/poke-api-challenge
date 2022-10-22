@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: poke
+      MONGO_INITDB_ROOT_PASSWORD: 8SBrJ4syMVm)Q()3
+    volumes:
+      - mongo_db:/data/db
+      - mongo_configdb:/data/configdb
+    # networks:
+    #   - default
+
+  backend:
+    image: node:16
+    container_name: backend
+    restart: unless-stopped
+    user: node
+    working_dir: /home/node/app
+    environment:
+      # GLOBALS
+      - PORT=4000
+      # DATABASE
+      - DATABASE_CONNECTION=mongodb
+      - DATABASE_HOST=mongo
+      - DATABASE_PORT=27017
+      - DATABASE_NAME=poke-api-challenge
+      - DATABASE_USER=poke
+      - DATABASE_PASS=8SBrJ4syMVm)Q()3
+      # HASH
+      - HASH_SALT=10
+      # JWT
+      - AUTH_SECRET='x$Ky82P)5!*+b3jk'
+      - AUTH_EXPIRE=1d
+      # PokeAPI
+      - POKE_API=https://pokeapi.co/api
+    volumes:
+      - ./backend:/home/node/app
+    ports:
+      - 4000:4000
+    # networks:
+    #   - default
+    depends_on:
+      - mongo
+    command: sh -c "npm i && npm run build && chmod 777 ./dist/src/commands.js && node ./dist/src/commands initial:seed && npm run start:prod"
+
+  frontend:
+    image: node:16
+    container_name: frontend
+    restart: unless-stopped
+    user: node
+    working_dir: /home/node/app
+    environment:
+      - REACT_APP_POKE_API_URL=http://localhost:4000/api
+    volumes:
+      - ./frontend:/home/node/app
+    ports:
+      - 3000:3000
+    # networks:
+    #   - default
+    depends_on:
+      - backend
+    command: sh -c "npm i && npm run start"
+
+volumes:
+  mongo_db:
+  mongo_configdb:
+
+    # networks:
+    #   default:
+    #     external: true
+    #     name: docker

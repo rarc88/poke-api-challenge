@@ -28,9 +28,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Poke API Challenge')
-    .setDescription(
-      'Frontend and backend programming challenge based on pokemon',
-    )
+    .setDescription('Backend programming challenge based on pokemon')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);

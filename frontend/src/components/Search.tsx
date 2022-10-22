@@ -18,7 +18,7 @@ export const Search = () => {
   const handleClear = () => {
     if (
       searchInput.current &&
-      (searchInput.current.value !== "" || pokemons.length === 0)
+      (searchInput.current.value !== "" || pokemons.length < 2)
     ) {
       searchInput.current.value = "";
       getPokemons();

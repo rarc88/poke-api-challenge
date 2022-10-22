@@ -1,61 +1,62 @@
 import axios, { AxiosError } from "axios";
 import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 import { PokeAPIContext } from "../contexts/PokeAPIContext";
 import { Pokemon } from "../types";
 
 export const useGetPokemon = () => {
   const { isLoading, setIsLoading, error, setError, pokemons, setPokemons } =
     useContext(PokeAPIContext);
+  const { accessToken } = useContext(AuthContext);
 
-  const getPokemon = async (id: string) => {
+  const getPokemon = async (name: string) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await axios.get(`/v2/pokemon/${id}`);
+      let config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
 
-      let result = response.data;
+      const response = await axios.get(`/v1/pokemon/${name}`, config);
+
+      let result = response.data.data;
+      if (!result) {
+        // eslint-disable-next-line
+        throw `${name} not found`;
+      }
+
       const pokemon: Pokemon = {
+        externalId: result.externalId,
         name: result.name,
-        url: "",
-        id: result.id,
+        description: result.description,
+        image: result.image,
+        evolvesTo: result.evolvesTo,
         height: result.height,
         weight: result.weight,
-        officialArtwork: result.sprites.other["official-artwork"].front_default,
+        baseExperience: result.baseExperience,
         types: result.types
           .map((item: any) => {
-            return item.type.name;
+            return item;
           })
           .join(", "),
-        baseExperience: result.base_experience,
         abilities: result.abilities
           .slice(0, result.abilities.length > 3 ? 3 : result.abilities.length)
-          .map((item: any) => item.ability.name)
+          .map((item: any) => item)
           .join(", "),
         moves: result.moves
           .slice(0, result.moves.length > 3 ? 3 : result.moves.length)
-          .map((item: any) => item.move.name)
+          .map((item: any) => item)
           .join(", "),
-        specieUrl: result.species.url,
-        evolvesTo: "",
       };
-
-      result = await axios.get(`/v2/characteristic/${pokemon.id}`);
-
-      pokemon.description = result.data.descriptions.find(
-        (description: any) => description.language.name === "en"
-      ).description;
-
-      result = await axios.get(pokemon.specieUrl);
-      result = await axios.get(result.data.evolution_chain.url);
-
-      pokemon.evolvesTo = result.data.chain.evolves_to[0].species.name;
 
       return pokemon;
     } catch (error: AxiosError | any) {
       if (error instanceof AxiosError) {
         if (error.response) {
-          setError(error.response.data);
+          setError(error.response.data.message);
         } else {
           setError(error.message);
         }

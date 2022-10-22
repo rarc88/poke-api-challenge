@@ -7,14 +7,14 @@ import { Pokemon } from "../types";
 
 export const Detail = () => {
   const { getPokemon, error } = useGetPokemon();
-  let { id } = useParams();
+  let { name } = useParams();
   const [pokemon, setPokemon] = useState<Pokemon>();
   const navigate = useNavigate();
 
   const isFirtRender = useRef(true);
   useEffect(() => {
-    if (isFirtRender.current && id) {
-      getPokemon(id).then((pokemon) => setPokemon(pokemon));
+    if (isFirtRender.current && name) {
+      getPokemon(name).then((pokemon) => setPokemon(pokemon));
 
       return () => {
         isFirtRender.current = false;
@@ -31,14 +31,16 @@ export const Detail = () => {
           <div className="col-md-6 col-sm-12 d-flex flex-row-reverse">
             <img
               className="img-fluid"
-              src={pokemon.officialArtwork}
+              src={pokemon.image}
               alt={pokemon.name}
               style={{ maxWidth: "100%", height: "auto" }}
             />
           </div>
           <div className="col-md-6 col-sm-12 px-4 d-flex flex-column justify-content-center">
             <h2>
-              {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+              {`${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(
+                1
+              )}`}
             </h2>
             <p className="pt-4">
               <strong>Description: </strong>
@@ -50,8 +52,9 @@ export const Detail = () => {
             </p>
             <p>
               <strong>Evolution: </strong>
-              {pokemon.evolvesTo.charAt(0).toUpperCase() +
-                pokemon.evolvesTo.slice(1)}
+              {`${pokemon.evolvesTo
+                ?.charAt(0)
+                .toUpperCase()}${pokemon.evolvesTo?.slice(1)}`}
             </p>
             <p>
               <strong>Height: </strong>

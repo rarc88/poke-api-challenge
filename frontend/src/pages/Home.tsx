@@ -23,7 +23,9 @@ export const Home = () => {
   return (
     <div className="pt-4">
       <h1 className="text-center">PokeAPI Challenge</h1>
-      <p className="text-center">Page Description</p>
+      <p className="text-center">
+        Frontend programming challenge based on pokemon
+      </p>
       <Search />
       {isLoading ? (
         <Loading />

@@ -4,15 +4,15 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from '../auth/decorators/public.decorator';
 
-@ApiTags('users')
+@ApiTags('user')
 @Controller({
-  path: 'users',
+  path: 'user',
   version: '1',
 })
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @ApiOperation({ description: 'Create users' })
+  @ApiOperation({ description: 'Create user' })
   @Public()
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
