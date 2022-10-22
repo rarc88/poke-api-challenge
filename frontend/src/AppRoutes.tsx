@@ -52,14 +52,3 @@ export const AppRoutes = () => {
     </Fragment>
   );
 };
-
-// const ProtectedRoute = ({ children }: Props) => {
-
-//   const location = useLocation();
-
-//   if (!accessToken && location.pathname !== "/login") {
-//     return <Navigate to="/login" />;
-//   }
-
-//   return children;
-// };

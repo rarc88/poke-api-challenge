@@ -20,7 +20,7 @@ export class PokemonService {
     const filter: FilterQuery<Pokemon> = {};
 
     if (params.name != null) {
-      filter.name = params.name;
+      filter.name = params.name.toLowerCase();
     }
 
     const query = this.pokemonModel.find(filter);
@@ -37,7 +37,9 @@ export class PokemonService {
 
   async findByName(name: string): Promise<PokemonDocument> {
     try {
-      const pokemon = await this.pokemonModel.findOne({ name }).exec();
+      const pokemon = await this.pokemonModel
+        .findOne({ name: name.toLowerCase() })
+        .exec();
       return pokemon;
     } catch (error) {
       console.log(error);

@@ -8,7 +8,12 @@ export const Search = () => {
 
   const searchInput = useRef<HTMLInputElement>(null);
 
-  const handleSearch = async () => {
+  const handleSearch = async (
+    e:
+      | React.KeyboardEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
     if (searchInput.current && searchInput.current.value !== "") {
       const pokemon = await getPokemon(searchInput.current.value);
       setPokemons(pokemon ? [pokemon] : []);
@@ -37,14 +42,14 @@ export const Search = () => {
             ref={searchInput}
             disabled={isLoading}
             onKeyUp={(e) => {
-              if (e.code === "Enter") handleSearch();
+              if (e.code === "Enter") handleSearch(e);
             }}
           />
           <div className="input-group-append" id="button-addon4">
             <button
               className="btn btn-primary"
               type="button"
-              onClick={handleSearch}
+              onClick={(e) => handleSearch(e)}
               disabled={isLoading}
             >
               Search
