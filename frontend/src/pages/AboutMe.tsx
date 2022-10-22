@@ -1,5 +1,9 @@
 import React from "react";
-import { FaWhatsappSquare, FaInstagramSquare } from "react-icons/fa";
+import {
+  FaWhatsappSquare,
+  FaInstagramSquare,
+  FaGithubSquare,
+} from "react-icons/fa";
 import { AiFillLinkedin } from "react-icons/ai";
 
 export const AboutMe = () => {
@@ -27,14 +31,14 @@ export const AboutMe = () => {
               </p>
               <p className="card-text text-start">
                 Manejo múltiples lenguajes de programación para frontend,
-                backend y mobile. También siento una fuerte atracción por los
-                todo lo relacionado con Docker (entornos de trabajo y deploys).
+                backend y mobile. También siento una fuerte atracción por todo
+                lo relacionado con Docker (entornos de trabajo y deploys).
               </p>
             </div>
             <div className="card-footer text-muted">
               <div>
                 <a
-                  href="https://platzi.com/p/rarc88/"
+                  href="https://platzi.com/p/rarc88"
                   rel="noreferrer"
                   target="_blank"
                   className="card-link"
@@ -48,6 +52,14 @@ export const AboutMe = () => {
                   className="card-link"
                 >
                   CV
+                </a>
+                <a
+                  href="https://github.com/rarc88/poke-api-challenge"
+                  rel="noreferrer"
+                  target="_blank"
+                  className="card-link"
+                >
+                  Repositorio
                 </a>
               </div>
               <div className="py-2">
@@ -68,12 +80,28 @@ export const AboutMe = () => {
                   <AiFillLinkedin size={size} color="#0e76a8" />
                 </a>
                 <a
-                  href="https://www.instagram.com/rarc2288/"
+                  href="https://www.instagram.com/rarc2288"
                   rel="noreferrer"
                   target="_blank"
                   className="card-link"
                 >
                   <FaInstagramSquare size={size} color="#C13584" />
+                </a>
+                <a
+                  href="https://www.instagram.com/rarc2288"
+                  rel="noreferrer"
+                  target="_blank"
+                  className="card-link"
+                >
+                  <FaInstagramSquare size={size} color="#C13584" />
+                </a>
+                <a
+                  href="https://github.com/rarc88"
+                  rel="noreferrer"
+                  target="_blank"
+                  className="card-link"
+                >
+                  <FaGithubSquare size={size} color="black" />
                 </a>
               </div>
             </div>

@@ -23,7 +23,7 @@ export const Detail = () => {
   });
 
   return (
-    <div className="pt-4">
+    <div className="py-4">
       {error ? (
         <Error error={error} />
       ) : pokemon ? (
